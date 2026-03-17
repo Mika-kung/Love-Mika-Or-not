@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>รัก MIKA ไหม🌻</title>
+    <title>รัก MIKA ไหม🌻 - Valentine Edition</title>
     <style>
+        /* ฟอนต์ภาษาไทยน่ารักๆ */
         @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap');
 
         body {
@@ -15,88 +16,173 @@
             height: 100vh;
             margin: 0;
             font-family: 'Kanit', sans-serif;
-            background-color: #fff0f3;
+            /* ธีมสีชมพูพาสเทลอ่อนๆ */
+            background-color: #fff0f3; 
             overflow: hidden;
+            transition: background-color 0.5s;
         }
 
         #container {
             text-align: center;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 2.5rem;
-            border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.2);
+            /* พื้นหลังขาวใสๆ เหมือนแก้ว */
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 40px;
+            /* เงาสีชมพู นุ่มนวล */
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.3);
             z-index: 10;
-            max-width: 400px;
+            max-width: 450px;
             width: 90%;
+            border: 2px solid #ffb6c1; /* เส้นขอบชมพูอ่อน */
         }
 
         h1 {
-            color: #ff4d6d;
-            margin-bottom: 25px;
+            /* สีชมพูเข้ม/แดงวาเลนไทน์ */
+            color: #ff1493;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(255, 182, 193, 0.5);
+            font-weight: 500;
         }
 
+        /* 🖼️ กรอบรูปทรงหัวใจ (Heart Frame) */
         .img-frame {
-            width: 100%;
-            height: 250px;
-            border-radius: 20px;
-            margin-bottom: 25px;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 30px auto;
+            position: relative;
+            /* ทำให้เป็นรูปหัวใจด้วยโค้ด CSS */
             overflow: hidden;
+            background: #fff;
+            border-radius: 50%; /* พื้นฐานทรงกลมก่อน */
+            box-shadow: 0 10px 25px rgba(255, 20, 147, 0.2);
+            border: 5px solid #fff; /* ขอบขาวหนาๆ */
         }
 
+        /* ส่วนประกอบหัวใจ */
+        .img-frame::before,
+        .img-frame::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 280px;
+            height: 448px;
+            border-radius: 140px 140px 0 0;
+            background: #fff; /* หรือสีพื้นหลังถ้าต้องการขอบใน */
+            z-index: -1;
+        }
+        .img-frame::before {
+            left: 140px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+        .img-frame::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        /* ปรับรูปให้พอดีในเฟรมหัวใจ */
         img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 50%; /* เพื่อให้ส่วนบนโค้งตามเฟรม */
         }
 
         /* ส่วนควบคุมปุ่ม */
         .buttons-wrapper {
             display: flex;
             justify-content: center;
-            gap: 40px; /* เว้นระยะห่างระหว่างปุ่ม */
-            height: 60px;
+            gap: 50px; /* เว้นระยะห่างปุ่มเพิ่มขึ้น */
+            height: 70px;
             position: relative;
+            margin-top: 20px;
         }
 
         button {
-            padding: 12px 30px;
-            font-size: 1.2rem;
+            padding: 15px 35px;
+            font-size: 1.4rem;
             border: none;
-            border-radius: 15px;
+            border-radius: 50px; /* ปุ่มโค้งมนสุดๆ */
             cursor: pointer;
             font-family: 'Kanit', sans-serif;
-            transition: transform 0.2s;
-            min-width: 100px;
+            transition: all 0.3s ease;
+            min-width: 120px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden; /* สำหรับเอฟเฟกต์ shine */
         }
 
+        /* ปุ่ม "รัก" สีแดงวาเลนไทน์ */
         #yesBtn {
             background-color: #ff4d6d;
             color: white;
+            z-index: 11;
         }
 
+        /* ✨ Shine Effect เมื่อ Hover ปุ่มรัก */
+        #yesBtn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1) translateY(-3px);
+            background-color: #ff758f;
+            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.4);
+        }
+
+        #yesBtn:hover::after {
+            left: 100%;
+        }
+
+        /* ปุ่ม "ไม่รัก" สีเทาอ่อน */
         #noBtn {
-            background-color: #adb5bd;
-            color: white;
-            /* ตอนแรกไม่ต้องใส่ position absolute เพื่อให้มันเรียงต่อจากปุ่มรัก */
+            background-color: #f8bbd0; /* สีชมพูอ่อนมากๆ */
+            color: #ff69b4; /* ตัวอักษรชมพู */
+            border: 1px solid #ffb6c1;
         }
 
         #result {
             display: none;
         }
 
+        /* ข้อความสำเร็จ สีแดง หัวใจเต้น */
         .success-text {
-            font-size: 1.5rem;
-            color: #ff4d6d;
+            font-size: 1.8rem;
+            color: #ff1493;
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 25px;
+            animation: heartBeat 1.5s infinite;
         }
 
-        .heart {
+        /* 💓 Animation หัวใจเต้น */
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.1); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.1); }
+            70% { transform: scale(1); }
+        }
+
+        /* 💖 เอฟเฟกต์หัวใจลอย */
+        .heart-fall {
             position: fixed;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             top: -10%;
             z-index: 5;
             animation: fall linear forwards;
+            color: #ff69b4; /* สีชมพู */
         }
 
         @keyframes fall {
@@ -107,18 +193,18 @@
 <body>
 
     <audio id="loveSong" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
     </audio>
 
     <div id="container">
         <div id="quiz">
-            <h1>รัก MIKA ไหม🌻</h1>
+            <h1>รัก MIKA ไหม🌻💖</h1>
             <div class="img-frame">
                 <img id="mainImg" src="image1.png" alt="Mika 1">
             </div>
             
             <div class="buttons-wrapper">
-                <button id="yesBtn" onclick="showLove()">รัก</button>
+                <button id="yesBtn" onclick="showLove()">รัก 💖</button>
                 <button id="noBtn" onmouseenter="moveButton()" onclick="moveButton()">ไม่รัก</button>
             </div>
         </div>
@@ -134,25 +220,26 @@
     <script>
         function moveButton() {
             const noBtn = document.getElementById('noBtn');
-            
-            // เมื่อเริ่มหนี ให้เปลี่ยนเป็น fixed เพื่อให้มันลอยไปได้ทั่วจอจริงๆ
             noBtn.style.position = 'fixed';
-            
-            // สุ่มตำแหน่ง (หักลบขนาดปุ่มเพื่อไม่ให้ล้นขอบจอ)
-            const padding = 50;
+            const padding = 60;
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
             const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
-            
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
         }
 
+        // ฟังก์ชันสร้างหัวใจหลากสี
         function createHeart() {
             const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '💗';
+            heart.classList.add('heart-fall');
+            // สุ่มเลือกไอคอนหัวใจ
+            const hearts = ['💖', '💗', '💓', '💝', '❤️'];
+            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+            
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 2 + 2 + 's';
+            heart.style.animationDuration = Math.random() * 2 + 2 + 's'; // สุ่มความเร็ว
+            heart.style.opacity = Math.random() * 0.5 + 0.5; // สุ่มความโปร่งแสง
+            
             document.body.appendChild(heart);
             setTimeout(() => { heart.remove(); }, 4000);
         }
@@ -160,12 +247,20 @@
         function showLove() {
             document.getElementById('quiz').style.display = 'none';
             document.getElementById('result').style.display = 'block';
+            
+            // เปลี่ยนพื้นหลังเป็นสีชมพูเข้มขึ้นเล็กน้อย
             document.body.style.backgroundColor = '#ffc1cc';
             
+            // เล่นเพลง
             const audio = document.getElementById('loveSong');
-            audio.play().catch(e => console.log("ต้องการการคลิกเพื่อเล่นเพลง"));
+            audio.play().catch(e => console.log("Blocked: interaction needed"));
 
-            setInterval(createHeart, 200);
+            // 💖 ปล่อยหัวใจชุดใหญ่
+            for(let i=0; i<30; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+            // และปล่อยต่อเนื่อง
+            setInterval(createHeart, 250);
         }
     </script>
 </body>
