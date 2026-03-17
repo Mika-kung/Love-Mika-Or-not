@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รัก MIKA ไหม🌻</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap');
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Kanit', sans-serif;
+            background-color: #fff0f3;
+            overflow: hidden;
+        }
+
+        #container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2.5rem;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.2);
+            z-index: 10;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            margin-bottom: 25px;
+        }
+
+        .img-frame {
+            width: 100%;
+            height: 250px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ส่วนควบคุมปุ่ม */
+        .buttons-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 40px; /* เว้นระยะห่างระหว่างปุ่ม */
+            height: 60px;
+            position: relative;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-family: 'Kanit', sans-serif;
+            transition: transform 0.2s;
+            min-width: 100px;
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #adb5bd;
+            color: white;
+            /* ตอนแรกไม่ต้องใส่ position absolute เพื่อให้มันเรียงต่อจากปุ่มรัก */
+        }
+
+        #result {
+            display: none;
+        }
+
+        .success-text {
+            font-size: 1.5rem;
+            color: #ff4d6d;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .heart {
+            position: fixed;
+            font-size: 1.5rem;
+            top: -10%;
+            z-index: 5;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="loveSong" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="container">
+        <div id="quiz">
+            <h1>รัก MIKA ไหม🌻</h1>
+            <div class="img-frame">
+                <img id="mainImg" src="image1.png" alt="Mika 1">
+            </div>
+            
+            <div class="buttons-wrapper">
+                <button id="yesBtn" onclick="showLove()">รัก</button>
+                <button id="noBtn" onmouseenter="moveButton()" onclick="moveButton()">ไม่รัก</button>
+            </div>
+        </div>
+
+        <div id="result">
+            <div class="img-frame">
+                <img src="image2.png" alt="Mika 2">
+            </div>
+            <p class="success-text">เค้ากะรักเธอ น้าา🩷😘</p>
+        </div>
+    </div>
+
+    <script>
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            
+            // เมื่อเริ่มหนี ให้เปลี่ยนเป็น fixed เพื่อให้มันลอยไปได้ทั่วจอจริงๆ
+            noBtn.style.position = 'fixed';
+            
+            // สุ่มตำแหน่ง (หักลบขนาดปุ่มเพื่อไม่ให้ล้นขอบจอ)
+            const padding = 50;
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
+            
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '💗';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 2 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 4000);
+        }
+
+        function showLove() {
+            document.getElementById('quiz').style.display = 'none';
+            document.getElementById('result').style.display = 'block';
+            document.body.style.backgroundColor = '#ffc1cc';
+            
+            const audio = document.getElementById('loveSong');
+            audio.play().catch(e => console.log("ต้องการการคลิกเพื่อเล่นเพลง"));
+
+            setInterval(createHeart, 200);
+        }
+    </script>
+</body>
+</html>
